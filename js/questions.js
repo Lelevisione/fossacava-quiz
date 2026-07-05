@@ -201,3 +201,12 @@ const QUESTIONS = {
   }
 
 };
+
+// Etichetta ogni domanda con il proprio tipo di origine (multipla/vf/immagine),
+// necessario per la modalità "mix" che pesca da tutte e tre le categorie
+// mantenendo per ciascuna domanda il rendering corretto (opzioni vs vero/falso).
+Object.values(QUESTIONS).forEach(levelPools => {
+  Object.entries(levelPools).forEach(([type, list]) => {
+    list.forEach(q => { q.type = type; });
+  });
+});

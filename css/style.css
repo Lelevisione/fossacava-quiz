@@ -199,6 +199,16 @@ h2 { font-size: clamp(1.35rem, 2.6vw, 1.8rem); }
   .cards-3 { grid-template-columns: 1fr; }
 }
 
+.cards-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 900px) {
+  .cards-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .cards-4 { grid-template-columns: 1fr; }
+}
+
 .card {
   display: flex;
   flex-direction: column;

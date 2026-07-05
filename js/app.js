@@ -11,8 +11,13 @@ const LEVEL_LABELS = {
 const MODE_LABELS = {
   multipla: "Risposta Multipla",
   vf: "Vero o Falso",
-  immagine: "Indovina l'Immagine"
+  immagine: "Indovina l'Immagine",
+  mix: "Mix"
 };
+
+// Quante domande pescare da ciascuna categoria in modalità "mix" (totale 20),
+// in proporzione alla numerosità delle banche dati (10 multipla, 10 vf, 8 immagine).
+const MIX_COUNTS = { multipla: 7, vf: 7, immagine: 6 };
 
 const state = {
   level: null,
@@ -65,9 +70,18 @@ function goModeSelect() {
   showScreen("screen-mode");
 }
 
+function buildMixQuestions(level) {
+  const pools = QUESTIONS[level];
+  const picked = [];
+  Object.entries(MIX_COUNTS).forEach(([type, count]) => {
+    picked.push(...shuffle(pools[type]).slice(0, count));
+  });
+  return shuffle(picked);
+}
+
 function startGame(mode) {
   state.mode = mode;
-  state.questions = shuffle(QUESTIONS[state.level][mode]);
+  state.questions = mode === "mix" ? buildMixQuestions(state.level) : shuffle(QUESTIONS[state.level][mode]);
   state.index = 0;
   state.score = 0;
   state.answered = false;
@@ -103,7 +117,7 @@ function renderQuestion() {
   const answersEl = document.getElementById("answers");
   answersEl.innerHTML = "";
 
-  if (state.mode === "vf") {
+  if (q.type === "vf") {
     buildAnswerButton(answersEl, "V", "Vero", true, q, q.answer === true);
     buildAnswerButton(answersEl, "F", "Falso", false, q, q.answer === false);
   } else {

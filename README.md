@@ -1,11 +1,13 @@
 # Fossacava Quiz — Il Quizzone di Roma Antica
 
 Webapp statica (HTML/CSS/JS puro, nessuna build necessaria) con quiz a tre livelli di
-difficoltà (10–13, 14–16, 17–18 anni) e tre modalità di gioco:
+difficoltà (10–13, 14–16, 17–18 anni) e quattro modalità di gioco:
 
 - Risposta multipla (4 opzioni)
 - Vero o Falso
 - Indovina l'immagine (foto della cava romana di Fossacava e di Luni)
+- Mix: 20 domande pescate dalle tre modalità precedenti (7 multipla + 7 vero/falso
+  + 6 immagine), sempre filtrate per la fascia d'età selezionata
 
 I contenuti uniscono la storia generale di Roma antica (re, imperatori, battaglie,
 istituzioni, monumenti) con i temi specifici della cava romana di Fossacava (Carrara)
