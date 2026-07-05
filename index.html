@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fossacava Quiz — Il Quizzone di Roma Antica</title>
+<meta name="description" content="Un quizzone sulla storia di Roma antica e sulla cava romana di Fossacava, per tre fasce d'età.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button id="btn-logo" class="logo" type="button" aria-label="Torna alla home">
+        <span class="logo-icon" aria-hidden="true">𐡷</span>
+        <span class="logo-text">FOSSACAVA <em>QUIZ</em></span>
+      </button>
+      <div class="topbar-status" id="topbar-status" hidden>
+        <span id="status-level" class="pill"></span>
+        <span id="status-mode" class="pill pill-alt"></span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- SCHERMATA 1: SELEZIONE LIVELLO -->
+    <section class="screen marble-hero" id="screen-home" aria-labelledby="home-title">
+      <div class="hero-inner">
+        <p class="eyebrow">Un tuffo nella Roma antica e nella cava romana di Fossacava</p>
+        <h1 id="home-title">Scegli la tua fascia d'età</h1>
+        <p class="subtitle">Domande, immagini e curiosità su imperatori, battaglie e sulla storica cava di marmo di Carrara. Rispondi e scopri quanto ne sai!</p>
+      </div>
+      <div class="cards cards-3" id="level-cards">
+        <button class="card card-level" data-level="junior" type="button">
+          <span class="card-age">10–13 anni</span>
+          <span class="card-title">Apprendista Storico</span>
+          <span class="card-desc">Le basi della storia romana e i primi segreti di Fossacava.</span>
+        </button>
+        <button class="card card-level" data-level="medio" type="button">
+          <span class="card-age">14–16 anni</span>
+          <span class="card-title">Esploratore d'Impero</span>
+          <span class="card-desc">Repubblica, battaglie, imperatori e commercio del marmo.</span>
+        </button>
+        <button class="card card-level" data-level="senior" type="button">
+          <span class="card-age">17–18 anni</span>
+          <span class="card-title">Magister Historiae</span>
+          <span class="card-desc">Approfondimenti su istituzioni, crisi dell'Impero e archeologia.</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCHERMATA 2: SELEZIONE MODALITA' -->
+    <section class="screen" id="screen-mode" aria-labelledby="mode-title" hidden>
+      <button class="btn-back" id="btn-back-home" type="button">&larr; Cambia fascia d'età</button>
+      <h2 id="mode-title">Scegli la modalità di gioco</h2>
+      <p class="subtitle">Livello selezionato: <strong id="mode-level-name"></strong></p>
+      <div class="cards cards-3" id="mode-cards">
+        <button class="card card-mode" data-mode="multipla" type="button">
+          <span class="card-icon" aria-hidden="true">◆</span>
+          <span class="card-title">Risposta Multipla</span>
+          <span class="card-desc">Quattro opzioni, una sola corretta.</span>
+        </button>
+        <button class="card card-mode" data-mode="vf" type="button">
+          <span class="card-icon" aria-hidden="true">⚖</span>
+          <span class="card-title">Vero o Falso</span>
+          <span class="card-desc">Metti alla prova i tuoi istinti storici.</span>
+        </button>
+        <button class="card card-mode" data-mode="immagine" type="button">
+          <span class="card-icon" aria-hidden="true">🏺</span>
+          <span class="card-title">Indovina l'Immagine</span>
+          <span class="card-desc">Osserva la foto e scegli la risposta giusta.</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCHERMATA 3: GIOCO -->
+    <section class="screen" id="screen-game" aria-labelledby="game-question" hidden>
+      <div class="game-head">
+        <button class="btn-back" id="btn-back-mode" type="button">&larr; Cambia modalità</button>
+        <div class="game-progress">
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          <span class="progress-text"><span id="q-index">1</span>/<span id="q-total">10</span></span>
+        </div>
+        <div class="game-score">Punti: <span id="q-score">0</span></div>
+      </div>
+
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-image-wrap" id="quiz-image-wrap" hidden>
+          <img id="quiz-image" alt="">
+        </div>
+        <h2 class="quiz-question" id="game-question"></h2>
+        <div class="answers" id="answers"></div>
+        <div class="feedback" id="feedback" hidden>
+          <p class="feedback-verdict" id="feedback-verdict"></p>
+          <p class="feedback-info" id="feedback-info"></p>
+          <button class="btn btn-primary" id="btn-next" type="button">Avanti &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHERMATA 4: RISULTATI -->
+    <section class="screen marble-hero" id="screen-results" aria-labelledby="results-title" hidden>
+      <div class="results-card">
+        <p class="eyebrow" id="results-eyebrow">Quiz completato</p>
+        <h2 id="results-title">Il tuo punteggio</h2>
+        <div class="results-score">
+          <span id="results-score-num">0</span><span class="results-score-den">/<span id="results-score-total">10</span></span>
+        </div>
+        <p class="results-message" id="results-message"></p>
+        <div class="results-actions">
+          <button class="btn btn-primary" id="btn-replay" type="button">Rigioca questa modalità</button>
+          <button class="btn btn-secondary" id="btn-change-mode" type="button">Cambia modalità</button>
+          <button class="btn btn-ghost" id="btn-change-level" type="button">Cambia fascia d'età</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>Fossacava &amp; Roma Antica — Quizzone didattico · Contenuti ispirati alla Cava Romana di Fossacava, Carrara e Luni</p>
+  </footer>
+
+</div>
+
+<script src="js/questions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
