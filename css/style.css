@@ -167,6 +167,13 @@ h2 { font-size: clamp(1.35rem, 2.6vw, 1.8rem); }
   margin: 0 0 30px;
 }
 
+.credit {
+  color: var(--stone-600);
+  font-size: 0.82rem;
+  margin: -18px 0 0;
+}
+.credit strong { color: var(--terracotta-dark); }
+
 /* ---------- Marble hero (usage limited to home & results) ---------- */
 
 .marble-hero {
